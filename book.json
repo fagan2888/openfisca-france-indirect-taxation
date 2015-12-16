@@ -12,5 +12,9 @@
     "github": {
       "url": "https://github.com/openfisca/openfisca-france-indirect-taxation"
     }
+  },
+  "structure": {
+    "readme": "docs/README.md",
+    "summary": "docs/SUMMARY.md"
   }
 }
