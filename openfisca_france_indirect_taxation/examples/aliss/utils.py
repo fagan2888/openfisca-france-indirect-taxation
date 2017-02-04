@@ -29,16 +29,13 @@ def build_aggreggates(variables, survey_scenario = None, adjusted_survey_scenari
     for variable in variables:
         aggregates[variable] = survey_scenario.compute_aggregate(variable) / 1e9
         adjusted_aggregates[variable] = adjusted_survey_scenario.compute_aggregate(variable) / 1e9
-        if not np.isfinite(survey_scenario.compute_aggregate(variable, reference = True)):
-            print 'variable {} aggregates is infinite'.format(variable)
-            reference_aggregates[variable] = (
-                survey_scenario.compute_aggregate(
-                    variable,
-                    reference = True,
-                    missing_variable_default_value = 0,
-                    ) / 1e9
-                )
-            continue
+        reference_aggregates[variable] = (
+            survey_scenario.compute_aggregate(
+                variable,
+                reference = True,
+                missing_variable_default_value = 0,
+                ) / 1e9
+            )
         reference_aggregates[variable] = (
             survey_scenario.compute_aggregate(variable, reference = True) / 1e9
             )
