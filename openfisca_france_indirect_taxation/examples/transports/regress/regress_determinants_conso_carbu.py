@@ -143,7 +143,7 @@ if __name__ == '__main__':
             ln_diesel_ttc + ln_super_95_ttc + ln_rev_disponible + rural + petite_villes + grandes_villes + \
             agglo_paris + nenfants + nadultes + situacj + situapr',
             data = data_log).fit()
-        print(reg_conso_carbu_log.summary())
+        log.info(reg_conso_carbu_log.summary())
 
         # We will now introduce an instrumental variable to correct for the endogeneity of expenditures.
 

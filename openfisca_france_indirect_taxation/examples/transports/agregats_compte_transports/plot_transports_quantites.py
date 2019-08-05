@@ -42,11 +42,11 @@ quantite_conso_vp.rename(columns = {'ESSENCE + GAZOLE': 'consommation totale', '
     'GAZOLE': 'consommation diesel'}, inplace = True)
 
 # Réalisation des graphiques
-print('Evolution de la taille du parc automobile au cours du temps')
+log.info('Evolution de la taille du parc automobile au cours du temps')
 graph_builder_carburants(taille_parc_vp, 'taille parc vp', 1, 0.3, 'blue', 'green', 'red', None)
 
-print('Evolution des quantités de carburants consommées par les voitures particulières françaises')
+log.info('Evolution des quantités de carburants consommées par les voitures particulières françaises')
 graph_builder_carburants(quantite_conso_vp, 'quantite conso vp', 0.85, 0.3, 'blue', 'green', 'red', None)
 
-print('Evolution des recettes totales issues de la TICPE')
+log.info('Evolution des recettes totales issues de la TICPE')
 graph_builder_carburants_no_color(recettes_ticpe, 'recettes totales ticpe', 1, 0.17)

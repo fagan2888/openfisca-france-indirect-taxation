@@ -205,4 +205,4 @@ def effect_reform_cold():
 
 if __name__ == "__main__":
     cold = effect_reform_cold()
-    print(logit.summary())
+    log.info(logit.summary())

@@ -42,9 +42,9 @@ data_matched_rank = pd.read_csv(
 
 # Sentiment du ménage par rapport à son budget actuel :
 # y arrive difficilement (4) ou n'y arrive pas sans dettes (5)
-print(float(len(data_matched_random.query('aise > 3'))) / len(data_matched_random) * 100)
+log.info(float(len(data_matched_random.query('aise > 3'))) / len(data_matched_random) * 100)
 for i in range(1, 11):
-    print(float(
+    log.info(float(
         len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('aise > 3'))
         ) / len(data_matched_random.query('niveau_vie_decile == {}'.format(i))) * 100)
 
@@ -53,28 +53,28 @@ data_matched_random['aise_froid'] = 0
 data_matched_random['aise_froid'] = \
     (data_matched_random['froid'] == 1) * (data_matched_random['aise'] > 3) * 1
 
-print(float(len(data_matched_random.query('aise_froid == 1'))) / len(data_matched_random) * 100)
+log.info(float(len(data_matched_random.query('aise_froid == 1'))) / len(data_matched_random) * 100)
 for i in range(1, 11):
-    print(float(
+    log.info(float(
         len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('aise_froid == 1'))
         ) / len(data_matched_random.query('niveau_vie_decile == {}'.format(i))) * 100)
 
 data_matched_random['aise_froid_cout'] = \
     (data_matched_random['aise_froid'] == 1) * (data_matched_random['froid_cout'] == 1) * 1
 
-print("Parmi les personnes déclarant avoir eu froid à cause du prix de l'énergie, quelle est la part \
+log.info("Parmi les personnes déclarant avoir eu froid à cause du prix de l'énergie, quelle est la part \
     ayant des difficultés dans leur budget ?")
-print(" ")
+log.info(" ")
 
 for i in range(1, 11):
-    print(float(len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('aise_froid_cout == 1')))
+    log.info(float(len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('aise_froid_cout == 1')))
 / len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('froid_cout == 1')))
-print(" ")
+log.info(" ")
 
-print("Parmi les personnes ayant des difficultés dans leur budget, et ayant froid dans leur logement \
+log.info("Parmi les personnes ayant des difficultés dans leur budget, et ayant froid dans leur logement \
     quelle est la part de ceux déclarant avoir eu froid à cause du prix de l'énergie ?")
-print(" ")
+log.info(" ")
 
 for i in range(1, 11):
-    print(float(len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('aise_froid_cout == 1')))
+    log.info(float(len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('aise_froid_cout == 1')))
 / len(data_matched_random.query('niveau_vie_decile == {}'.format(i)).query('aise_froid == 1')))

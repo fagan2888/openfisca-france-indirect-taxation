@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
+import logging
+import os
 import pandas as pd
 import pkg_resources
-import os
+
+
+log = logging.getLogger(__name__)
 
 
 def create_data_elasticities():
@@ -25,7 +29,7 @@ def create_data_elasticities():
     dataframe_2011 = dataframe.query('year == 2011')
 
     for j in range(1, 4):
-        print((dataframe_2011['elas_price_{0}_{0}'.format(j)].mean()))
+        log.info((dataframe_2011['elas_price_{0}_{0}'.format(j)].mean()))
 
     data_plus = dataframe_2011.query('elas_price_2_2 > 0')
     data_plus['elas_price_2_2'].quantile([0.1, .2, .3, .4, .5, .6, .7, .8, .9])
@@ -130,4 +134,4 @@ if __name__ == "__main__":
     year = 2011
     create_data_elasticities()
     df = get_elasticities(year)
-    print((df.dtypes))
+    log.info((df.dtypes))

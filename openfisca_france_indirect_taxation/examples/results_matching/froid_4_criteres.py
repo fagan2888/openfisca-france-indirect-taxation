@@ -76,7 +76,7 @@ def histogram_froid_4_criteres_niveau_vie_decile(data_matched, data_enl, categor
     if category == 'tuu':
         i_max = 9
     else:
-        print('Wrong category')
+        log.info('Wrong category')
     for i in range(1, i_max):
         data_enl_decile = data_enl.query('{} == {}'.format(category, i))
         data_matched_decile = data_matched.query('{} == {}'.format(category, i))

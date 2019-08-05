@@ -9,9 +9,15 @@
 # Regarder code StatMatch
 
 
+import logging
+
+
 from openfisca_survey_manager.survey_collections import SurveyCollection
 from openfisca_survey_manager import default_config_files_directory as config_files_directory
 from openfisca_survey_manager.temporary import TemporaryStore
+
+
+log = logging.getLogger(__name__)
 
 
 temporary_store = TemporaryStore.create(file_name = "logement_tmp")
@@ -105,14 +111,14 @@ conso_bdf_keep = input_data_frame[variables_bdf]
 # Compare surveys :
 
 menage_enl_keep['depenses_gaz'] = menage_enl_keep['coml12'] + menage_enl_keep['coml3']
-print(menage_enl_keep['depenses_gaz'].mean())
-print(conso_bdf_keep['poste_coicop_452'].mean())
+log.info(menage_enl_keep['depenses_gaz'].mean())
+log.info(conso_bdf_keep['poste_coicop_452'].mean())
 
-print(menage_enl_keep['msituac'].hist())
-print(conso_bdf_keep['situacj'].hist())
+log.info(menage_enl_keep['msituac'].hist())
+log.info(conso_bdf_keep['situacj'].hist())
 
-print(menage_enl_keep['mne1'].hist())
-print(conso_bdf_keep['nenfants'].hist())
+log.info(menage_enl_keep['mne1'].hist())
+log.info(conso_bdf_keep['nenfants'].hist())
 
 menage_enl_keep['mne1'].plot.density()
 conso_bdf_keep['nenfants'].plot.density()

@@ -6,6 +6,7 @@
 # the increase in taxes he faced. These amounts do not take into account VAT.
 
 
+import logging
 from openfisca_france_indirect_taxation.examples.utils_example import (
     dataframe_by_group,
     graph_builder_bar,
@@ -15,6 +16,10 @@ from openfisca_france_indirect_taxation.surveys import SurveyScenario
 from openfisca_france_indirect_taxation.almost_ideal_demand_system.elasticites_aidsills import get_elasticities_aidsills
 from openfisca_france_indirect_taxation.examples.calage_bdf_cn_energy import get_inflators_by_year_energy
 from openfisca_france_indirect_taxation.reforms.officielle_2019_in_2017 import officielle_2019_in_2017
+
+
+log = logging.getLogger(__name__)
+
 
 inflators_by_year = get_inflators_by_year_energy(rebuild = False)
 year = 2016
@@ -51,8 +56,8 @@ df_reforme = survey_scenario.create_data_frame_by_entity(simulated_variables, pe
 
 df_reforme['cheque'] = 1 * (df_reforme['cheques_energie_officielle_2019_in_2017'] > 0)
 df_reforme['cheque_philippe'] = 1 * (df_reforme['cheques_energie_philippe_officielle_2019_in_2017'] > 0)
-print((df_reforme['pondmen'] * df_reforme['cheque']).sum())
-print((df_reforme['pondmen'] * df_reforme['cheque_philippe']).sum())
+log.info((df_reforme['pondmen'] * df_reforme['cheque']).sum())
+log.info((df_reforme['pondmen'] * df_reforme['cheque_philippe']).sum())
 
 for category in ['niveau_vie_decile']:  # ['niveau_vie_decile', 'age_group_pr', 'strate']:
     df = dataframe_by_group(survey_scenario, category, simulated_variables)
@@ -103,10 +108,10 @@ for category in ['niveau_vie_decile']:  # ['niveau_vie_decile', 'age_group_pr', 
         df_reforme['revenu_reforme_officielle_2019_in_2017']
         - df_reforme['cheques_energie_philippe_officielle_2019_in_2017']
         )
-    print((df_reforme['cout_reforme_uc_avant_cheque_energie'] * df_reforme['pondmen']).sum() / 1e6)
-    print((df_reforme['cout_reforme_uc_cheque_officiel'] * df_reforme['pondmen']).sum() / 1e6)
-    print((df_reforme['cout_reforme_uc_cheque_majore'] * df_reforme['pondmen']).sum() / 1e6)
-    print((df_reforme['cout_reforme_uc_cheque_philippe'] * df_reforme['pondmen']).sum() / 1e6)
-    print((df_reforme['cheques_energie_officielle_2019_in_2017'] * df_reforme['pondmen']).sum() / 1e6)
-    print((df_reforme['cheques_energie_majore_officielle_2019_in_2017'] * df_reforme['pondmen']).sum() / 1e6)
-    print((df_reforme['cheques_energie_philippe_officielle_2019_in_2017'] * df_reforme['pondmen']).sum() / 1e6)
+    log.info((df_reforme['cout_reforme_uc_avant_cheque_energie'] * df_reforme['pondmen']).sum() / 1e6)
+    log.info((df_reforme['cout_reforme_uc_cheque_officiel'] * df_reforme['pondmen']).sum() / 1e6)
+    log.info((df_reforme['cout_reforme_uc_cheque_majore'] * df_reforme['pondmen']).sum() / 1e6)
+    log.info((df_reforme['cout_reforme_uc_cheque_philippe'] * df_reforme['pondmen']).sum() / 1e6)
+    log.info((df_reforme['cheques_energie_officielle_2019_in_2017'] * df_reforme['pondmen']).sum() / 1e6)
+    log.info((df_reforme['cheques_energie_majore_officielle_2019_in_2017'] * df_reforme['pondmen']).sum() / 1e6)
+    log.info((df_reforme['cheques_energie_philippe_officielle_2019_in_2017'] * df_reforme['pondmen']).sum() / 1e6)

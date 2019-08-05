@@ -34,11 +34,11 @@ depenses_menages_transports['part transports dépenses totales'] = (
     )
 
 # Réalisation des graphiques
-print('Evolution des dépenses des ménages en carburants')
+log.info('Evolution des dépenses des ménages en carburants')
 graph_builder_carburants_no_color(depenses_menages_transports['Dépenses carburants et lubrifiants'],
     'depenses menages carburants', 0.9, 0.20)
 
-print('Evolution de la part des carburants et des transports dans les dépenses totales des ménages')
+log.info('Evolution de la part des carburants et des transports dans les dépenses totales des ménages')
 graph_builder_carburants(
     depenses_menages_transports[['part transports dépenses totales'] + ['part carburants dépenses totales']],
     'part transports depenses menages', 1, 0.65, 'midnightblue', 'turquoise', 'blue', None)

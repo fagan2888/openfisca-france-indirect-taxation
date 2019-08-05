@@ -103,4 +103,4 @@ if __name__ == "__main__":
     regression_ols = estimations[0]
     regression_logit = estimations[1]
 
-    print(regression_logit.summary())
+    log.info(regression_logit.summary())

@@ -97,4 +97,4 @@ recettes_reforme = (
     + recettes_poste_11_1_3_1
     + recettes_poste_11_1_3_2
     )
-print(recettes_reforme)
+log.info(recettes_reforme)

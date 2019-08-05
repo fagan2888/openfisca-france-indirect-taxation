@@ -40,7 +40,7 @@ survey_scenario = SurveyScenario.create(
 
 df_reforme = survey_scenario.create_data_frame_by_entity(simulated_variables, period = year)['menage']
 df_reforme['depenses_tabac'] = df_reforme['poste_02_2_1'] + df_reforme['poste_02_2_2'] + df_reforme['poste_02_2_3']
-print((df_reforme['poste_02_2_3'] * df_reforme['pondmen']).sum() / (df_reforme['depenses_tabac'] * df_reforme['pondmen']).sum())
+log.info((df_reforme['poste_02_2_3'] * df_reforme['pondmen']).sum() / (df_reforme['depenses_tabac'] * df_reforme['pondmen']).sum())
 
 nombre_paquets_annuel = 2.21e9  # Nb de paquets de 20 cigarettes consommés en France par an en 2017
 nombre_menages = (df_reforme['pondmen']).sum()
@@ -88,5 +88,5 @@ for category in ['niveau_vie_decile']:  # ['niveau_vie_decile', 'age_group_pr', 
     graph_builder_bar(df['cout_reforme_depenses_tot_elasticite'], False)
 
     # Calculer le budget total
-    print(df['cout_reforme_elasticite'].mean())
-    print(df['cout_reforme_elasticite'].mean() * df_reforme['pondmen'].sum())
+    log.info(df['cout_reforme_elasticite'].mean())
+    log.info(df['cout_reforme_elasticite'].mean() * df_reforme['pondmen'].sum())

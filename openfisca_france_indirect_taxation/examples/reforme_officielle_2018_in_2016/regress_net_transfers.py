@@ -154,7 +154,7 @@ regression_ols = smf.ols(formula = 'Net_transfers_by_cu_after_recycling ~ \
     Consumption_units + Monoparental + Number_in_labor_force + Student + Age_representative + Age_representative_squared + \
     Share_distance_to_work + Vehicule_age',
     data = df_reforme).fit()
-print(regression_ols.summary())
+log.info(regression_ols.summary())
 
 """
 

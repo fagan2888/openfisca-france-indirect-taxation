@@ -225,4 +225,4 @@ def estimate_froid():
 if __name__ == "__main__":
     regression_logit = estimate_froid()
     # print regression_logit.summary()
-    print(regression_logit.get_margeff().summary())
+    log.info(regression_logit.get_margeff().summary())

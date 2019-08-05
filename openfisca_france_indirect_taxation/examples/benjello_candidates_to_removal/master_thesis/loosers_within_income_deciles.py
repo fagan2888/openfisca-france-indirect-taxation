@@ -49,7 +49,7 @@ for reforme in ['rattrapage_diesel', 'taxe_carbone', 'cce_2015_in_2014', 'cce_20
         - (menages_reform['total_taxes_energies'] - menages_reference['total_taxes_energies'])
         )
 
-    print(reforme)
+    log.info(reforme)
     for i in range(1, 11):
         menages_decile = menages_reform.loc[menages_reform['niveau_vie_decile'] == i]
         len_decile = float(len(menages_decile))
@@ -61,4 +61,4 @@ for reforme in ['rattrapage_diesel', 'taxe_carbone', 'cce_2015_in_2014', 'cce_20
         mean_loosers = menages_decile_loosers['Cost_after_green_cheques'].mean()
         mean_loosers_income = menages_decile_loosers['rev_disp_loyerimput'].mean()
 
-        print(i, share * 100, mean_loosers, mean_loosers_income)
+        log.info(i, share * 100, mean_loosers, mean_loosers_income)

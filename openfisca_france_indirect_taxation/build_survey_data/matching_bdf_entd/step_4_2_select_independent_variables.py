@@ -70,7 +70,7 @@ for dependent_variable in ['distance', 'distance_diesel', 'distance_essence']:
             regression_distance_essence = regression.summary()
 
 
-print(regression_distance)
+log.info(regression_distance)
 # print regression_distance_diesel
 # print regression_distance_essence
 

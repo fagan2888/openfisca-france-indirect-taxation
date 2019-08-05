@@ -5,11 +5,15 @@ Created on Tue Jul 04 16:36:58 2017
 @author: Thomas
 """
 
+import logging
 import statsmodels.formula.api as smf
 
 
-from openfisca_france_indirect_taxation.build_survey_data.matching_bdf_enl.step_4_clean_data import \
-    clean_data
+from openfisca_france_indirect_taxation.build_survey_data.matching_bdf_enl.step_4_clean_data import clean_data
+
+
+
+log = logging.getLogger(__name__)
 
 
 data_enl = clean_data()[0]
@@ -35,17 +39,17 @@ regression = smf.ols(formula = 'froid ~ \
      ocde10 + ouest_sud + part_energies_revtot + revtot + revtot_2 + rural + \
     surfhab_d',
     data = data_enl).fit()
-print(regression.summary())
+log.info(regression.summary())
 
 variables = ['aides_logement', 'agepr', 'bat_av_49', 'bat_49_74', 'log_indiv',
     'ocde10', 'ouest_sud', 'part_energies_revtot', 'revtot', 'revtot_2', 'rural',
     'surfhab_d']
 
 logit = smf.Logit(data_enl['froid'], data_enl[variables]).fit()
-print(logit.summary())
+log.info(logit.summary())
 
 probit = smf.Probit(data_enl['froid'], data_enl[variables]).fit()
-print(probit.summary())
+log.info(probit.summary())
 
 
 """
@@ -57,11 +61,11 @@ regression = smf.ols(formula = 'froid_cout ~ \
      ocde10 + ouest_sud + part_energies_revtot + revtot + revtot_2 + rural + \
     surfhab_d',
     data = data_enl).fit()
-print(regression.summary())
+log.info(regression.summary())
 
 variables = ['aides_logement', 'agepr', 'bat_av_49', 'bat_49_74', 'log_indiv',
     'ocde10', 'ouest_sud', 'part_energies_revtot', 'revtot', 'revtot_2', 'rural',
     'surfhab_d']
 
 logit = smf.Logit(data_enl['froid_cout'], data_enl[variables]).fit()
-print(logit.summary())
+log.info(logit.summary())

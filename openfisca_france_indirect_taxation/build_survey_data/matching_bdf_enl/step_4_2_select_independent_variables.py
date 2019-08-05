@@ -7,11 +7,16 @@ we want to match. The objective is to select the independent variables with
 the largest predictive power.
 """
 
+
+import logging
 import statsmodels.formula.api as smf
 
 
 from openfisca_france_indirect_taxation.build_survey_data.matching_bdf_enl.step_2_homogenize_variables import \
     create_niveau_vie_quantiles
+
+
+log = logging.getLogger(__name__)
 
 
 data_enl = create_niveau_vie_quantiles()[0]
@@ -66,8 +71,8 @@ for dependent_variable in ['froid', 'froid_cout', 'froid_isolation']:
             regression_froid_isolation = regression.summary()
 
 
-print(regression_froid)
-print(regression_froid_cout)
+log.info(regression_froid)
+log.info(regression_froid_cout)
 # print regression_froid_isolation
 
 latex = regression_froid.as_latex()

@@ -79,6 +79,6 @@ df_precaires_transports = df_reforme.query('precarite_transports_rev_disponible 
 df_precaires_logement = df_reforme.query('precarite_energetique_rev_disponible == 1')
 
 df_to_plot = distribution_pertes_precaires(df_precaires_joint)
-print(df_to_plot)
+log.info(df_to_plot)
 # df_to_plot = distribution_pertes_precaires(df_precaires_transports)
 # df_to_plot = distribution_pertes_precaires(df_precaires_logement)

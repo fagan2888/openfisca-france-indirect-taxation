@@ -168,8 +168,8 @@ share_cold_reforme = (df_reforme['predict_proba'] * df_reforme['pondmen']).sum()
 
 percentage_increase_cold_reforme = (share_cold_reforme - share_cold_reference) / share_cold_reference
 
-print(df_reference['predict_proba'].mean())
-print(df_reforme['predict_proba'].mean())
+log.info(df_reference['predict_proba'].mean())
+log.info(df_reforme['predict_proba'].mean())
 
-print(df_reference.query('niveau_vie_decile < 4')['predict_proba'].mean())
-print(df_reforme.query('niveau_vie_decile < 4')['predict_proba'].mean())
+log.info(df_reference.query('niveau_vie_decile < 4')['predict_proba'].mean())
+log.info(df_reforme.query('niveau_vie_decile < 4')['predict_proba'].mean())

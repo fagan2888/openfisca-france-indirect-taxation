@@ -46,7 +46,7 @@ def extract_informations_from_coicop_to_categorie_fiscale():
             by = [exceptions.annee - np.arange(exceptions.shape[0]), 'posteCOICOP', 'categoriefiscale']
             )
         for k, g in grouped:
-            print((
+            log.info((
                 g.posteCOICOP.unique()[0], g.description.unique()[0], g.annee.min(), g.annee.max(),
                 taxe_by_categorie_fiscale_number[int(g.categoriefiscale.unique())]
                 ))
@@ -66,7 +66,7 @@ def extract_informations_from_coicop_to_categorie_fiscale():
 
     for coicop_division in divisions:
         dominant, exceptions = get_dominant_and_exceptions(coicop_division)
-        print(('\nDivision: {}.\nCatégorie fiscale dominante: {}.\nExceptions:'.format(
+        log.info(('\nDivision: {}.\nCatégorie fiscale dominante: {}.\nExceptions:'.format(
             coicop_division,
             taxe_by_categorie_fiscale_number[dominant]
             )))
@@ -662,4 +662,4 @@ if __name__ == "__main__":
     bdf_coicop_nomenclature = bdf(year = 2011)
     bdf_coicop_nomenclature = add_fiscal_categories_to_coicop_nomenclature(bdf_coicop_nomenclature, to_csv = True)
 
-    print((get_categorie_fiscale('11.1.1.1.1', year = 2010)))
+    log.info((get_categorie_fiscale('11.1.1.1.1', year = 2010)))

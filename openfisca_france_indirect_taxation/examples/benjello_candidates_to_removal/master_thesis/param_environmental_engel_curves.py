@@ -61,7 +61,7 @@ reg_emissions = smf.ols(formula = 'emissions_CO2_energies_totales ~ \
     rev_disp_loyerimput + rev_disp_loyerimput_2 + ocde10 + strate_0 + strate_1 + strate_3 + strate_4 + age_group_pr + \
     age_group_pr_2 + alone + occupe_both + gaz + fioul + vag_23 + vag_24 + vag_25 + vag_26 + vag_27',
     data = menages).fit()
-print(reg_emissions.summary())
+log.info(reg_emissions.summary())
 
 ocde10 = menages['ocde10'].mean()
 strate_1 = menages['strate_1'].mean()

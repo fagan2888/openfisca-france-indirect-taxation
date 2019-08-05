@@ -69,5 +69,5 @@ for reforme in ['rattrapage_diesel', 'taxe_carbone', 'cce_2014_2015', 'cce_2014_
             * menages['pondmen']
             ).sum()
 
-        print(reforme, sum_reduit / menages['pondmen'].sum())
-        print(reforme, sum_plein / menages['pondmen'].sum())
+        log.info(reforme, sum_reduit / menages['pondmen'].sum())
+        log.info(reforme, sum_plein / menages['pondmen'].sum())

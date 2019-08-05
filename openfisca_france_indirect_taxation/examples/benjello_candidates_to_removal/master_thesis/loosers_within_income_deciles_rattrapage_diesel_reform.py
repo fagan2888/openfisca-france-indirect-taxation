@@ -54,7 +54,7 @@ menages['Cost_after_green_cheques'] = (
     ((contribution_unite_conso) * menages['ocde10'] - menages['difference_contribution_energie_{}'.format(reforme)])
     )
 
-print(reforme)
+log.info(reforme)
 for i in range(1, 11):
     menages_decile = menages.loc[menages['niveau_vie_decile'] == i]
     len_decile = float(len(menages_decile))
@@ -66,4 +66,4 @@ for i in range(1, 11):
     mean_loosers = menages_decile_loosers['Cost_after_green_cheques'].mean()
     mean_loosers_income = menages_decile_loosers['rev_disp_loyerimput'].mean()
 
-    print(i, share * 100, mean_loosers, mean_loosers_income)
+    log.info(i, share * 100, mean_loosers, mean_loosers_income)

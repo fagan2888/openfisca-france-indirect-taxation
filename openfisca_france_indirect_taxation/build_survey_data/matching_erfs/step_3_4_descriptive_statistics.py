@@ -29,7 +29,7 @@ data_erfs['position_rev_disponible'] = data_erfs['position_rev_disponible'] / le
 data_erfs['position_revdecm'] = data_erfs['revdecm'].argsort().argsort()
 data_erfs['position_revdecm'] = data_erfs['position_revdecm'] / len(data_erfs)
 
-print(data_erfs[['position_rev_disponible'] + ['rev_disponible']])
+log.info(data_erfs[['position_rev_disponible'] + ['rev_disponible']])
 
 graph_builder_dot(data_erfs['position_revdecm'], data_erfs['position_rev_disponible'])
 graph_builder_dot(data_erfs['revdecm'], data_erfs['rev_disponible'])
@@ -37,7 +37,7 @@ graph_builder_dot(data_erfs['revdecm'], data_erfs['rev_disponible'])
 data_erfs['difference_position'] = (
     data_erfs['position_rev_disponible'] - data_erfs['position_revdecm']
     )
-print((
+log.info((
     len(data_erfs.query('difference_position > 0.1'))
     + len(data_erfs.query('difference_position < -0.1'))
     ) / len(data_erfs))

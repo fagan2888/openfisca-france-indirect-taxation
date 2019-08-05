@@ -8,6 +8,7 @@ import os
 import pandas
 import pkg_resources
 
+
 try:
     from openfisca_survey_manager.survey_collections import SurveyCollection
     from openfisca_survey_manager import default_config_files_directory as config_files_directory
@@ -560,14 +561,14 @@ def get_adjusted_input_data_frame(reform_key = None, verbose = False):
     for age, revenus, poste in iterator:
         selection = (input_data_frame.age == age) & (input_data_frame.revenus == revenus)
         if verbose:
-            print(poste)
+            log.info(poste)
             before = (
                 input_data_frame.loc[selection, poste] * input_data_frame.loc[selection, 'pondmen']
                 ).sum()
-            print(('before: ', before))
-            print(('adjusted_bdf_budget_share', bdf_adjusted_expenditures.loc[
+            log.info(('before: ', before))
+            log.info(('adjusted_bdf_budget_share', bdf_adjusted_expenditures.loc[
                 (age, revenus, poste), 'adjusted_bdf_budget_share']))
-            print(('bdf_budget_share', bdf_adjusted_expenditures.loc[(age, revenus, poste), 'bdf_budget_share']))
+            log.info(('bdf_budget_share', bdf_adjusted_expenditures.loc[(age, revenus, poste), 'bdf_budget_share']))
 
         try:
             if bdf_adjusted_expenditures.loc[(age, revenus, poste), 'bdf_budget_share'] != 0:
@@ -577,12 +578,12 @@ def get_adjusted_input_data_frame(reform_key = None, verbose = False):
                     * input_data_frame.loc[selection, poste]
                     )
         except Exception:
-            print((bdf_adjusted_expenditures.loc[(age, revenus, poste), 'bdf_budget_share']))
-            print((bdf_adjusted_expenditures.loc[(age, revenus, poste)]))
+            log.info((bdf_adjusted_expenditures.loc[(age, revenus, poste), 'bdf_budget_share']))
+            log.info((bdf_adjusted_expenditures.loc[(age, revenus, poste)]))
             raise
 
         if verbose:
-            print(('after/before: ', (
+            log.info(('after/before: ', (
                 input_data_frame.loc[selection, poste] * input_data_frame.loc[selection, 'pondmen']
                 ).sum() / (before + 1) - 1
                 ))
@@ -591,6 +592,6 @@ def get_adjusted_input_data_frame(reform_key = None, verbose = False):
 
 if __name__ == '__main__':
     input_data_frame = get_adjusted_input_data_frame(reform_key = 'tva_sociale')
-#    print(input_data_frame.columns[input_data_frame.isnull().any()])
+#    log.info(input_data_frame.columns[input_data_frame.isnull().any()])
 
     # df = build_clean_aliss_data_frame()

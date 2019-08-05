@@ -92,7 +92,7 @@ while max_rsquared_adj > current_max_rsquared_adj:
 
 regression = regression.summary()
 
-print(regression)
+log.info(regression)
 
 # A partir des coefficients estimés, calculer la probabilité de précarité de chaque ménage
 # Remplacer par 1 pour ceux déjà précaires via le TEE ou le BRDE
